@@ -1,0 +1,47 @@
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[package]
+name = "sam_reborn"
+version = "1.0.0"
+edition = "2021"
+
+[lib]
+name = "lib"
+path = "src/lib.rs"
+crate-type = ["cdylib", "rlib"]
+
+[[bin]]
+name = "sam_reborn"
+path = "src/main.rs"
+
+[dependencies]
+base64 = "0.22.1"
+console_error_panic_hook = "0.1.7"
+image = "0.25.1"
+logging_timer = "1.1.1"
+wasm-bindgen = "0.2.92"
+
+[profile.release]
+codegen-units = 1
+lto = true
+panic = "abort"
+
+[profile.dev]
+debug-assertions = true
+debug = 2
+
+[dependencies.web-sys]
+version = "0.3.4"
+features = [
+  'Document',
+  'Element',
+  'HtmlCanvasElement',
+  'WebGlBuffer',
+  'WebGlVertexArrayObject',
+  'WebGl2RenderingContext',
+  'WebGlProgram',
+  'WebGlShader',
+  'MessageEvent',
+  'Window',
+  'Worker',
+]
